@@ -83,7 +83,7 @@ function setupEditor() {
 }
 
 function loadPeopleFromServer(callback) {
-  $.get('/data.people', function(data) {
+  $.get('/loadPeople', function(data) {
     //console.log(data);
     //editor.setValue(data);
     //editor.gotoLine(0);
@@ -104,38 +104,44 @@ function fillTable(people) {
   });
 }
 
-function initButtons(editor) {
+function initButtons() {
   $('#save').click(save);
 
-  $('#calc').click(function() {
-    var people = getInputData(editor);
-
-    console.log($('#inputVal').val());
-
-    chooseDay(people, $('#inputVal').val());
-
-    fillTable(people);
-  });
+  //$('#calc').click(function() {
+  //  var people = getInputData(editor);
+  //
+  //  console.log($('#inputVal').val());
+  //
+  //  chooseDay(people, $('#inputVal').val());
+  //
+  //  fillTable(people);
+  //});
 }
 
 function save() {
-  var people = getInputData(editor);
+  //var people = getInputData(editor);
+  //
+  //console.log(people);
 
-  console.log(people);
+  var people = getKuraNames();
 
-  $.post('/savePeople', people);
+  var p2 = JSON.stringify(people);
+
+  console.log(p2);
+
+  $.post('/savePeople', {people: p2});
 }
 
 function main() {
+  initButtons();
 
   //editor = setupEditor();
-  //initButtons(editor);
   //var people = getKuraNames();
   loadPeopleFromServer(function(data) {
     //var people = getInputData(editor);
 
     //console.log(people);
-    console.log(data);
+    //console.log(data);
 
 
 

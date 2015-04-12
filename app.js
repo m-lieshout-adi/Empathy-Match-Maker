@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+
 app.get('/data.people', function(req, res) {
   console.log('hi!!!!');
   fs.readFile( __dirname + '/public/people.txt', function (err, data) {
@@ -37,19 +38,27 @@ app.get('/data.people', function(req, res) {
   });
 });
 
-app.post('/savePeople', function(req, res) {
-  console.log('save people');
-  //console.log(JSON.stringify(req.body, null, 3));
 
-  var text = beautify(JSON.stringify(req.body), { indent_size: 2 });
-
-  console.log(text);
-
-  fs.writeFile(__dirname + '/public/people.json', text, function(err) {
+app.get('/loadPeople', function(req, res) {
+  fs.readFile(__dirname + '/public/people.json', function(err, data) {
     if (err) {
       throw err;
     }
-    //beautify
+    //console.log(data.toString());
+
+    res.send(data.toString());
+  });
+});
+
+
+app.post('/savePeople', function(req, res) {
+  var peopleStr = req.body.people;
+  var text = JSON.parse(peopleStr);
+
+  fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function(err) {
+    if (err) {
+      throw err;
+    }
     console.log('saved to people.json');
   });
 });
