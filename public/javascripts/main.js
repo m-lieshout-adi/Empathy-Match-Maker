@@ -137,30 +137,16 @@ function main() {
 
     //fillTable(people);
 
-    pickMatches(people);
-    //_.each(people, function(p) {p.print();});
 
 
-    pickMatches(people);
-    //_.each(people, function(p) {p.print();});
+    /*
 
-
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-    pickMatches(people);
-
-    pickMatches(people);
+    for (var i = 0; i < 10; i++) {
+      pickMatches(people);
+    }
     _.each(people, function(p) {p.print();});
 
-    //console.log(people);
-    //console.log(data);
-
+    */
 
 
   });

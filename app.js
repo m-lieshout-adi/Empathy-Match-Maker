@@ -10,6 +10,9 @@ var users = require('./routes/users');
 var fs = require('fs');
 var beautify = require('js-beautify').js_beautify;
 
+var matchMaker = require('./src/match-maker');
+
+
 var app = express();
 
 // view engine setup
@@ -20,7 +23,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,46 +31,59 @@ app.use('/', routes);
 app.use('/users', users);
 
 
-app.get('/data.people', function(req, res) {
-  console.log('hi!!!!');
-  fs.readFile( __dirname + '/public/people.txt', function (err, data) {
-    if (err) {
-      throw err;
-    }
-    res.send(data.toString());
-  });
+app.get('/data.people', function (req, res) {
+   console.log('hi!!!!');
+   fs.readFile(__dirname + '/public/people.txt', function (err, data) {
+      if (err) {
+         throw err;
+      }
+      res.send(data.toString());
+   });
 });
 
 
-app.get('/loadPeople', function(req, res) {
-  fs.readFile(__dirname + '/public/people2.json', function(err, data) {
-    if (err) {
-      throw err;
-    }
-    //console.log(data.toString());
+app.get('/loadPeople', function (req, res) {
+   fs.readFile(__dirname + '/public/people2.json', function (err, data) {
+      if (err) {
+         throw err;
+      }
+      //console.log(data.toString());
+      matchMaker.pickMatches(data.toString());
 
-    res.send(data.toString());
-  });
+      res.send(data.toString());
+   });
 });
 
 
-app.post('/savePeople', function(req, res) {
-  var peopleStr = req.body.people;
-  var text = JSON.parse(peopleStr);
-
-  fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function(err) {
-    if (err) {
+// TODO: temp main code
+fs.readFile(__dirname + '/public/people2.json', function (err, data) {
+   if (err) {
       throw err;
-    }
-    console.log('saved to people.json');
-  });
+   }
+   //console.log(data.toString());
+   matchMaker.pickMatches(data.toString());
+
+   //res.send(data.toString());
+});
+
+
+app.post('/savePeople', function (req, res) {
+   var peopleStr = req.body.people;
+   var text = JSON.parse(peopleStr);
+
+   fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function (err) {
+      if (err) {
+         throw err;
+      }
+      console.log('saved to people.json');
+   });
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+   var err = new Error('Not Found');
+   err.status = 404;
+   next(err);
 });
 
 
@@ -76,31 +92,31 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+   app.use(function (err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+         message: err.message,
+         error: err
+      });
+   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+app.use(function (err, req, res, next) {
+   res.status(err.status || 500);
+   res.render('error', {
+      message: err.message,
+      error: {}
+   });
 });
 
 var server = app.listen(3000, function () {
 
-  var host = server.address().address;
-  var port = server.address().port;
+   var host = server.address().address;
+   var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port)
+   console.log('Example app listening at http://%s:%s', host, port);
 
 });
 
