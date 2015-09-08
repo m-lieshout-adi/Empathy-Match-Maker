@@ -23,11 +23,11 @@ a {
 
 #controls {
   overflow: auto;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*right: 0;*/
+  /*width: 50%;*/
+  /*height: 100%;*/
   /*background-color: #00B7FF;*/
 }
 
@@ -40,7 +40,8 @@ a {
 }
 
 #table {
-  width: 90%;
+  /*width: 90%;*/
+  width: 400px;
   margin: 10px;
 }
 

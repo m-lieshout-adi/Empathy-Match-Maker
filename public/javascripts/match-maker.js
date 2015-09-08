@@ -37,3 +37,9 @@ function chooseDay(people, num) {
 }
 
 
+function mkPeopleFromJson(data) {
+  return _.map(JSON.parse(data), function(e) {
+    return new Person(e.name, e.previousMatches, e.empathiser);
+  });
+}
+

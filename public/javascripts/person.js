@@ -56,6 +56,21 @@ Person.prototype.toStr = function() {
 
 Person.prototype.toTableRow = function() {
   var match = this.previousMatches[this.previousMatches.length-1];
-  return '<tr><td>' + this.name + '</td><td>' + match + '</td></tr>';
+
+  var e = '';
+  if (this.empathiser) {
+    e = ' (empathiser)'
+  }
+
+  return '<tr><td>' + this.name + '</td><td>' + match + e + '</td></tr>';
 };
 
+
+function Match(speaker, listener) {
+  this.speaker = speaker;
+  this.listener = listener;
+}
+
+Match.prototype.equals = function(other) {
+  return this.speaker === other.speaker && this.listener === other.listener;
+};
