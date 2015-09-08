@@ -84,6 +84,8 @@
 function loadPeopleFromServer(callback) {
   $.get('/loadPeople', function(data) {
 
+    //console.log(data);
+
     if(callback) {
       callback(data);
     }
@@ -128,9 +130,23 @@ function main() {
   //var people = getKuraNames();
   loadPeopleFromServer(function(data) {
     var people = mkPeopleFromJson(data);
-    var p2 = chooseDay(people, 3);
+    //console.log(people);
 
-    fillTable(people);
+    _.each(people, function(p) {p.print();});
+    //var p2 = chooseDay(people, 3);
+
+    //fillTable(people);
+
+    pickMatches(people);
+    _.each(people, function(p) {p.print();});
+
+
+    pickMatches(people);
+    _.each(people, function(p) {p.print();});
+
+
+    pickMatches(people);
+    _.each(people, function(p) {p.print();});
 
     //console.log(people);
     //console.log(data);

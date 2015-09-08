@@ -40,7 +40,7 @@ app.get('/data.people', function(req, res) {
 
 
 app.get('/loadPeople', function(req, res) {
-  fs.readFile(__dirname + '/public/people.json', function(err, data) {
+  fs.readFile(__dirname + '/public/people2.json', function(err, data) {
     if (err) {
       throw err;
     }
