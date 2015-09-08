@@ -48,9 +48,11 @@ app.get('/loadPeople', function (req, res) {
          throw err;
       }
       //console.log(data.toString());
-      matchMaker.pickMatches(data.toString());
+      var people = matchMaker.pickMatches(data.toString());
 
-      res.send(data.toString());
+      console.log(people);
+
+      res.send(people);
    });
 });
 

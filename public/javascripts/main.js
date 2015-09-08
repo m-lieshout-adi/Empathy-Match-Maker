@@ -129,7 +129,12 @@ function main() {
   //editor = setupEditor();
   //var people = getKuraNames();
   loadPeopleFromServer(function(data) {
-    var people = mkPeopleFromJson(data);
+    console.log(JSON.parse(data));
+
+
+
+
+    //var people = mkPeopleFromJson(data);
     //console.log(people);
 
     //_.each(people, function(p) {p.print();});

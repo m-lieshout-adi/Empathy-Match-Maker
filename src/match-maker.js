@@ -3,11 +3,11 @@
  */
 
 var Person = require('./person');
-//var Match = require('./match');
-//var Contender = require('./contender');
 var _ = require('underscore')._;
 
-
+/**
+ * @param {string} dataStr
+ */
 function pickMatches(dataStr) {
    var people = mkPeopleFromJson(dataStr);
 
@@ -16,9 +16,17 @@ function pickMatches(dataStr) {
       calcMatches(people);
    }
 
-   _.each(people, function(p) {p.print();});
+   //_.each(people, function(p) {p.print();});
+
+   return JSON.stringify(getMatches(people));
 }
 
+/**
+ * NOTE: Recursive, mutates people.
+ *
+ * @param {Person[]} people
+ * @returns {void}
+ */
 function calcMatches(people) {
    if (people.length > 0) {
       var highest = null;
@@ -38,6 +46,26 @@ function calcMatches(people) {
       // RECURSE
       return calcMatches(_.without(people, highest.person, highest.contender.person));
    }
+}
+
+/**
+ * @param {Person[]} people
+ * @returns {Match[]}
+ */
+function getMatches(people) {
+   var matches = [];
+
+   _.each(people, function(p) {
+      var lastMatch = _.last(p.previousMatches);
+
+      if (!_.some(matches, function(m) {
+            return m.equivalent(lastMatch);
+         })) {
+         matches.push(lastMatch);
+      }
+   });
+
+   return matches;
 }
 
 
