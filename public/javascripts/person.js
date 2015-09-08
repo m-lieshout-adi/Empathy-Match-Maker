@@ -50,7 +50,6 @@ _.extend(Person.prototype, {
          var res = this.urgency(person);
 
          if (this.name !== person.name && (highest === null || res > highest.urgency)) {
-            //highest = {person: person, urgency: res};
             highest = new Contender(person, res);
          }
       }, this);
@@ -61,6 +60,15 @@ _.extend(Person.prototype, {
 
    pick: function(person) {
       //TODO: remove previous equal matches, pick client/empathiser properly.
+      var match = new Match(this.name, person.name);
+
+      var prev = _.find(this.previousMatches, function(m) {
+         return m.equivalent(match);
+      });
+
+      if (prev)
+         this.previousMatches = _.without(this.previousMatches, prev);
+
       this.previousMatches.push(new Match(this.name, person.name));
    },
 

@@ -19,6 +19,15 @@ _.extend(Match.prototype, {
       return this.client === name || this.empathiser === name;
    },
 
+   /**
+    * @param {Match} other
+    * @returns {boolean}
+    */
+   equivalent: function(other) {
+      return this.empathiser === other.empathiser && this.client === other.client
+         || this.empathiser === other.client && this.client === other.empathiser;
+   },
+
    toStr: function(person) {
       return person.name === this.empathiser ? this.client : this.empathiser;
    }

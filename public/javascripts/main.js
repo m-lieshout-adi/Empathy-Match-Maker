@@ -132,18 +132,28 @@ function main() {
     var people = mkPeopleFromJson(data);
     //console.log(people);
 
-    _.each(people, function(p) {p.print();});
+    //_.each(people, function(p) {p.print();});
     //var p2 = chooseDay(people, 3);
 
     //fillTable(people);
 
     pickMatches(people);
-    _.each(people, function(p) {p.print();});
+    //_.each(people, function(p) {p.print();});
 
 
     pickMatches(people);
-    _.each(people, function(p) {p.print();});
+    //_.each(people, function(p) {p.print();});
 
+
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
+    pickMatches(people);
 
     pickMatches(people);
     _.each(people, function(p) {p.print();});
