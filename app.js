@@ -48,6 +48,12 @@ app.get('/prevDay', function(req, res) {
    res.send(JSON.stringify(data.getMatches()));
 });
 
+app.get('/lastModified', function(req, res) {
+   data.getLastModifiedDate(function(data) {
+      res.send(JSON.stringify(data.mtime.toString()));
+   });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

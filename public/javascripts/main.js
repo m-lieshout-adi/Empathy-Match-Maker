@@ -22,6 +22,7 @@ function nextDay() {
    $.get('/nextDay', function(data) {
       var matches = JSON.parse(data);
       fillTable(matches);
+      updateLastModifiedDate();
    });
 }
 
@@ -29,6 +30,13 @@ function prevDay() {
    $.get('/prevDay', function(data) {
       var matches = JSON.parse(data);
       fillTable(matches);
+      updateLastModifiedDate();
+   });
+}
+
+function updateLastModifiedDate() {
+   $.get('/lastModified', function(data) {
+      $('.lastModified').html("last modified: " + JSON.parse(data));
    });
 }
 
@@ -38,6 +46,7 @@ function main() {
    loadPeopleFromServer(function (data) {
       var matches = JSON.parse(data);
       fillTable(matches);
+      updateLastModifiedDate();
    });
 
 }

@@ -1,85 +1,50 @@
 body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font-size: larger;
+   font-family: 'Open Sans', Calibri, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+   color: #00B7FF;
+}
+
+button {
+   font-family: 'Open Sans', Calibri, Arial, sans-serif;
+   font-size: 16px;
 }
 
 #names {
-  width: 250px;
-  height: 250px;
+   width: 250px;
+   height: 250px;
 }
 
-
-#editor {
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*left: 0;*/
-  /*width: 50%;*/
-  /*height: 100%;*/
+.controls {
+   max-width: 600px;
 }
 
-#controls {
-  overflow: auto;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*right: 0;*/
-  /*width: 50%;*/
-  /*height: 100%;*/
-  /*background-color: #00B7FF;*/
+.lastModified {
+   margin: 20px 10px 10px;
+   font-size: smaller;
 }
 
 .input {
-  margin: 10px;
+   margin: 10px;
 }
 
 #inputVal {
-  width: 60px;
+   width: 60px;
 }
 
 #table {
-  /*width: 90%;*/
-  width: 400px;
-  margin: 10px;
+   width: 400px;
+   margin: 10px;
 }
 
 table, th, td {
-  border: 1px solid #dddddd;
-  border-collapse: collapse;
-  /*margin: 10px;*/
+   border: 1px solid #dddddd;
+   border-collapse: collapse;
 }
+
 th, td {
-  padding: 5px;
+   padding: 5px;
 }
 
-@media print {
-  #editor {
-    /*display: none;*/
-    visibility: hidden;
-  }
-
-  body {
-    /*position: absolute;*/
-    visibility: visible;
-  }
-
-  #table {
-    visibility: visible;
-    width: 400px;
-    height: 500px;
-    /*position: absolute;*/
-  }
-  /*body * {*/
-    /*visibility:hidden;*/
-  /*}*/
-  /*#printable, #printable * {*/
-    /*visibility:visible;*/
-  /*}*/
-  /*#printable { /!* aligning the printable area *!/*/
-    /*position:absolute;*/
-    /*left:40px;*/
-    /*top:40px;*/
-  /*}*/
-}

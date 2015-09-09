@@ -26,6 +26,15 @@ function load(callback) {
    });
 }
 
+function getLastModifiedDate(callback) {
+   fs.stat(__dirname + '/../public/history.json', function(err, data) {
+      if (err) {
+         throw err;
+      }
+      callback(data);
+   });
+}
+
 function loadNames(callback) {
    fs.readFile(__dirname + '/../public/names.json', function(err, data) {
       if (err) {
@@ -132,3 +141,4 @@ module.exports.save = save;
 module.exports.nextDay = nextDay;
 module.exports.prevDay = prevDay;
 module.exports.getMatches = getMatches;
+module.exports.getLastModifiedDate = getLastModifiedDate;
