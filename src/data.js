@@ -9,6 +9,7 @@ var _ = require('underscore')._;
 var matchMaker = require('./match-maker');
 
 var _people = null;
+var _names = null;
 
 function load(callback) {
    fs.readFile(__dirname + '/../public/history.json', function(err, data) {
@@ -16,14 +17,50 @@ function load(callback) {
          throw err;
       }
       _people = mkPeopleFromJson(data.toString());
-
-      //if (noMatches()) {
-      //   nextDay();
-      //}
+      loadNames(syncNamesAndHistory);
 
       callback(_people);
    });
 }
+
+function loadNames(callback) {
+   fs.readFile(__dirname + '/../public/names.json', function(err, data) {
+      if (err) {
+         throw err;
+      }
+      _names = data.toString();
+
+      callback(_names);
+   });
+}
+
+function syncNamesAndHistory() {
+   console.log('before: ', _people.length);
+
+   _people = _.filter(_people, function(p) {
+      return _.some(_names, function(n) {
+         return p.name === n;
+      });
+   });
+
+   console.log('after: ', _people.length);
+
+   //_.each(_names, function(n) {
+   //   if (!_.some())
+   //});
+}
+
+//function makeNames() {
+//   var names = ["a", "b", "c", "d", "e", "f", "g", "h"];
+//
+//   fs.writeFile(__dirname + '/../public/names.json', JSON.stringify(names, null, 3), function (err) {
+//      if (err) {
+//         throw err;
+//      }
+//      console.log('saved to names.json');
+//   });
+//}
+//makeNames();
 
 function save() {
    fs.writeFile(__dirname + '/../public/history.json', JSON.stringify(_people, null, 3), function (err) {
