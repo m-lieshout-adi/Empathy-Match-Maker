@@ -4,6 +4,7 @@
 
 var fs = require('fs');
 var Person = require('./person');
+var Match = require('./match');
 var _ = require('underscore')._;
 var matchMaker = require('./match-maker');
 
@@ -25,10 +26,7 @@ function load(callback) {
 }
 
 function save() {
-   //var peopleStr = req.body.people;
-   var text = JSON.parse(_people);
-
-   fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function (err) {
+   fs.writeFile(__dirname + '/../public/people.json', JSON.stringify(_people, null, 3), function (err) {
       if (err) {
          throw err;
       }
@@ -38,7 +36,7 @@ function save() {
 
 function nextDay() {
    matchMaker.calcMatches(_people);
-   //save();
+   save();
 }
 
 function getMatches() {
@@ -47,7 +45,11 @@ function getMatches() {
 
 function mkPeopleFromJson(data) {
    return _.map(JSON.parse(data), function(e) {
-      return new Person(e.name, e.matches);
+      var matches = _.map(e.previousMatches, function(m) {
+         return new Match(m.empathiser, m.client);
+      });
+
+      return new Person(e.name, matches);
    });
 }
 

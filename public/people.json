@@ -1,18 +1,18 @@
 [
   {"name": "a",
-   "matches": []},
+   "previousMatches": []},
   {"name": "b",
-   "matches": []},
+   "previousMatches": []},
   {"name": "c",
-   "matches": []},
+   "previousMatches": []},
   {"name": "d",
-   "matches": []},
+   "previousMatches": []},
   {"name": "e",
-   "matches": []},
+   "previousMatches": []},
   {"name": "f",
-   "matches": []},
+   "previousMatches": []},
   {"name": "g",
-    "matches": []},
+    "previousMatches": []},
   {"name": "h",
-   "matches": []}
+   "previousMatches": []}
 ]
