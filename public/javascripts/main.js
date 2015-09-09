@@ -92,15 +92,15 @@ function loadPeopleFromServer(callback) {
   });
 }
 
-function fillTable(people) {
-  $('#table').find('tr').remove();
-
-  _.each(people, function(person) {
-    //if (person.empathiser) {
-      $('#table').find('> tbody:last').append(person.toTableRow());
-    //}
-  });
-}
+//function fillTable(people) {
+//  $('#table').find('tr').remove();
+//
+//  _.each(people, function(person) {
+//    //if (person.empathiser) {
+//      $('#table').find('> tbody:last').append(person.toTableRow());
+//    //}
+//  });
+//}
 
 function initButtons() {
   $('#save').click(save);
@@ -129,9 +129,11 @@ function main() {
   //editor = setupEditor();
   //var people = getKuraNames();
   loadPeopleFromServer(function(data) {
-    console.log(JSON.parse(data));
+    var matches = JSON.parse(data);
 
+    console.log(matches);
 
+    fillTable(matches);
 
 
     //var people = mkPeopleFromJson(data);
