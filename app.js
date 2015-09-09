@@ -30,9 +30,6 @@ app.get('/admin', function (req, res) {
 
 app.get('/loadMatches', function (req, res) {
    data.load(function() {
-      // currently no matches
-      //data.nextDay();
-
       res.send(JSON.stringify(data.getMatches()));
    });
 });
@@ -43,17 +40,12 @@ app.get('/nextDay', function(req, res) {
    res.send(JSON.stringify(data.getMatches()));
 });
 
-//app.post('/savePeople', function (req, res) {
-//   var peopleStr = req.body.people;
-//   var text = JSON.parse(peopleStr);
-//
-//   fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function (err) {
-//      if (err) {
-//         throw err;
-//      }
-//      console.log('saved to people.json');
-//   });
-//});
+app.get('/prevDay', function(req, res) {
+   data.prevDay();
+
+   res.send(JSON.stringify(data.getMatches()));
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

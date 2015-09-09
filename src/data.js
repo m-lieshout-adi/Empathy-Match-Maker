@@ -17,9 +17,9 @@ function load(callback) {
       }
       _people = mkPeopleFromJson(data.toString());
 
-      if (noMatches()) {
-         nextDay();
-      }
+      //if (noMatches()) {
+      //   nextDay();
+      //}
 
       callback(_people);
    });
@@ -39,7 +39,18 @@ function nextDay() {
    save();
 }
 
+function prevDay() {
+   _.each(_people, function(p) {
+      p.removeLastMatch();
+   });
+   save();
+}
+
 function getMatches() {
+   if (noMatches()) {
+      nextDay();
+   }
+
    return matchMaker.getMatches(_people);
 }
 
@@ -64,4 +75,5 @@ function noMatches() {
 module.exports.load = load;
 module.exports.save = save;
 module.exports.nextDay = nextDay;
+module.exports.prevDay = prevDay;
 module.exports.getMatches = getMatches;

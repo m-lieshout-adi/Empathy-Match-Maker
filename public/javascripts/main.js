@@ -14,17 +14,20 @@ function loadPeopleFromServer(callback) {
 }
 
 function initButtons() {
-   $('#calc').click(function () {
-      nextDay();
-   });
+   $('#nextDay').click(nextDay);
+   $('#prevDay').click(prevDay);
 }
 
 function nextDay() {
    $.get('/nextDay', function(data) {
       var matches = JSON.parse(data);
+      fillTable(matches);
+   });
+}
 
-      console.log(matches);
-
+function prevDay() {
+   $.get('/prevDay', function(data) {
+      var matches = JSON.parse(data);
       fillTable(matches);
    });
 }
@@ -34,12 +37,7 @@ function main() {
 
    loadPeopleFromServer(function (data) {
       var matches = JSON.parse(data);
-
-      console.log(matches);
-
       fillTable(matches);
-
-
    });
 
 }

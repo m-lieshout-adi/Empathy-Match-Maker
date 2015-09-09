@@ -77,6 +77,13 @@ Person.prototype.pick = function(person) {
 };
 
 /**
+ * @returns {void}
+ */
+Person.prototype.removeLastMatch = function() {
+   this.previousMatches.pop();
+};
+
+/**
  * @returns {string}
  */
 Person.prototype.toStr = function() {
