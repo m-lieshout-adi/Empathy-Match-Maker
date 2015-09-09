@@ -1,27 +1,9 @@
 [
    {
-      "name": "a",
+      "name": "h",
       "previousMatches": [
          {
-            "empathiser": "a",
-            "client": "b"
-         }
-      ]
-   },
-   {
-      "name": "b",
-      "previousMatches": [
-         {
-            "empathiser": "b",
-            "client": "a"
-         }
-      ]
-   },
-   {
-      "name": "c",
-      "previousMatches": [
-         {
-            "empathiser": "c",
+            "empathiser": "h",
             "client": "d"
          }
       ]
@@ -31,7 +13,52 @@
       "previousMatches": [
          {
             "empathiser": "d",
+            "client": "h"
+         }
+      ]
+   },
+   {
+      "name": "i",
+      "previousMatches": [
+         {
+            "empathiser": "i",
+            "client": "j"
+         }
+      ]
+   },
+   {
+      "name": "j",
+      "previousMatches": [
+         {
+            "empathiser": "j",
+            "client": "i"
+         }
+      ]
+   },
+   {
+      "name": "c",
+      "previousMatches": [
+         {
+            "empathiser": "c",
+            "client": "g"
+         }
+      ]
+   },
+   {
+      "name": "g",
+      "previousMatches": [
+         {
+            "empathiser": "g",
             "client": "c"
+         }
+      ]
+   },
+   {
+      "name": "a",
+      "previousMatches": [
+         {
+            "empathiser": "a",
+            "client": "e"
          }
       ]
    },
@@ -40,6 +67,15 @@
       "previousMatches": [
          {
             "empathiser": "e",
+            "client": "a"
+         }
+      ]
+   },
+   {
+      "name": "b",
+      "previousMatches": [
+         {
+            "empathiser": "b",
             "client": "f"
          }
       ]
@@ -49,25 +85,7 @@
       "previousMatches": [
          {
             "empathiser": "f",
-            "client": "e"
-         }
-      ]
-   },
-   {
-      "name": "g",
-      "previousMatches": [
-         {
-            "empathiser": "g",
-            "client": "h"
-         }
-      ]
-   },
-   {
-      "name": "h",
-      "previousMatches": [
-         {
-            "empathiser": "h",
-            "client": "g"
+            "client": "b"
          }
       ]
    }
