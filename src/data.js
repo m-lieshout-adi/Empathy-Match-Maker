@@ -87,11 +87,15 @@ function nextDay() {
    makeMatches();
    console.log('lowestUrgency: ', matchMaker.getLowestUrgency());
 
-   if (matchMaker.getLowestUrgency() < 2) {
+   var numAttempts = 0;
+
+   // Algorithm can still produce bad results sometimes, if so, try again.
+   while (matchMaker.getLowestUrgency() < 2 && numAttempts < 20) {
       console.log('remaking matches for day');
       prevDay();
 
       makeMatches();
+      numAttempts++;
    }
 }
 
