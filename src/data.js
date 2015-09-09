@@ -11,7 +11,7 @@ var matchMaker = require('./match-maker');
 var _people = null;
 
 function load(callback) {
-   fs.readFile(__dirname + '/../public/people.json', function(err, data) {
+   fs.readFile(__dirname + '/../public/history.json', function(err, data) {
       if (err) {
          throw err;
       }
@@ -26,11 +26,11 @@ function load(callback) {
 }
 
 function save() {
-   fs.writeFile(__dirname + '/../public/people.json', JSON.stringify(_people, null, 3), function (err) {
+   fs.writeFile(__dirname + '/../public/history.json', JSON.stringify(_people, null, 3), function (err) {
       if (err) {
          throw err;
       }
-      console.log('saved to people.json');
+      console.log('saved to history.json');
    });
 }
 

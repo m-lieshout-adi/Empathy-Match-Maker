@@ -56,7 +56,6 @@ Person.prototype.mostUrgent = function(people) {
       }
    }, this);
 
-   //TODO: can this be null?
    return highest;
 };
 

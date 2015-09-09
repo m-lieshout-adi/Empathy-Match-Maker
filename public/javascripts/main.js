@@ -14,8 +14,6 @@ function loadPeopleFromServer(callback) {
 }
 
 function initButtons() {
-   //$('#save').click(save);
-
    $('#calc').click(function () {
       nextDay();
    });

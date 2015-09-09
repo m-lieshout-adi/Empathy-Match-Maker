@@ -1,0 +1,74 @@
+[
+   {
+      "name": "a",
+      "previousMatches": [
+         {
+            "empathiser": "a",
+            "client": "b"
+         }
+      ]
+   },
+   {
+      "name": "b",
+      "previousMatches": [
+         {
+            "empathiser": "b",
+            "client": "a"
+         }
+      ]
+   },
+   {
+      "name": "c",
+      "previousMatches": [
+         {
+            "empathiser": "c",
+            "client": "d"
+         }
+      ]
+   },
+   {
+      "name": "d",
+      "previousMatches": [
+         {
+            "empathiser": "d",
+            "client": "c"
+         }
+      ]
+   },
+   {
+      "name": "e",
+      "previousMatches": [
+         {
+            "empathiser": "e",
+            "client": "f"
+         }
+      ]
+   },
+   {
+      "name": "f",
+      "previousMatches": [
+         {
+            "empathiser": "f",
+            "client": "e"
+         }
+      ]
+   },
+   {
+      "name": "g",
+      "previousMatches": [
+         {
+            "empathiser": "g",
+            "client": "h"
+         }
+      ]
+   },
+   {
+      "name": "h",
+      "previousMatches": [
+         {
+            "empathiser": "h",
+            "client": "g"
+         }
+      ]
+   }
+]
