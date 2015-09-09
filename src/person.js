@@ -73,7 +73,7 @@ Person.prototype.pick = function(person) {
    if (prev)
       this.previousMatches = _.without(this.previousMatches, prev);
 
-   this.previousMatches.push(new Match(this.name, person.name));
+   this.previousMatches.push(match);
 };
 
 /**

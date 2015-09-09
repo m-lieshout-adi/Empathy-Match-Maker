@@ -26,6 +26,12 @@ function calcMatches(people) {
          }
       });
 
+      //console.log(highest.contender.urgency);
+      //
+      //if (highest.contender.urgency === 1) {
+      //   console.log(highest.person.name, ' - ', highest.contender.person.name);
+      //}
+
       highest.person.pick(highest.contender.person);
       highest.contender.person.pick(highest.person);
 
@@ -44,7 +50,7 @@ function getMatches(people) {
    _.each(people, function(p) {
       var lastMatch = _.last(p.previousMatches);
 
-      if (!_.some(matches, function(m) {
+      if (lastMatch && !_.some(matches, function(m) {
             return m.equivalent(lastMatch);
          })) {
          matches.push(lastMatch);

@@ -17,9 +17,12 @@ function load(callback) {
          throw err;
       }
       _people = mkPeopleFromJson(data.toString());
-      loadNames(syncNamesAndHistory);
 
-      callback(_people);
+      loadNames(function() {
+         syncNamesAndHistory(function() {
+            callback(_people);
+         });
+      });
    });
 }
 
@@ -28,13 +31,25 @@ function loadNames(callback) {
       if (err) {
          throw err;
       }
-      _names = data.toString();
+      _names = JSON.parse(data.toString());
+
+      _.each(_names, function(n) {
+         console.log(n);
+      });
 
       callback(_names);
    });
 }
 
-function syncNamesAndHistory() {
+function syncNamesAndHistory(callback) {
+   deleteHistoryOfRemovedNames();
+   addNewNamesToHistory();
+
+   save();
+   callback();
+}
+
+function deleteHistoryOfRemovedNames() {
    console.log('before: ', _people.length);
 
    _people = _.filter(_people, function(p) {
@@ -44,25 +59,22 @@ function syncNamesAndHistory() {
    });
 
    console.log('after: ', _people.length);
-
-   //_.each(_names, function(n) {
-   //   if (!_.some())
-   //});
 }
 
-//function makeNames() {
-//   var names = ["a", "b", "c", "d", "e", "f", "g", "h"];
-//
-//   fs.writeFile(__dirname + '/../public/names.json', JSON.stringify(names, null, 3), function (err) {
-//      if (err) {
-//         throw err;
-//      }
-//      console.log('saved to names.json');
-//   });
-//}
-//makeNames();
+function addNewNamesToHistory() {
+   _.each(_names, function(n) {
+      if (!_.some(_people, function(p) {
+            return p.name === n;
+         })) {
+         _people.push(new Person(n, []));
+      }
+   });
+}
 
 function save() {
+   if (!_people)
+      return;
+
    fs.writeFile(__dirname + '/../public/history.json', JSON.stringify(_people, null, 3), function (err) {
       if (err) {
          throw err;
@@ -72,6 +84,7 @@ function save() {
 }
 
 function nextDay() {
+   _people = _.shuffle(_people);
    matchMaker.calcMatches(_people);
    save();
 }
@@ -84,9 +97,6 @@ function prevDay() {
 }
 
 function getMatches() {
-   if (noMatches()) {
-      nextDay();
-   }
 
    return matchMaker.getMatches(_people);
 }
