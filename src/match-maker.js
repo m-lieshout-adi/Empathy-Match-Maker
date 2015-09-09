@@ -7,13 +7,16 @@ var _ = require('underscore')._;
 
 
 
+var _lowestUrgency = Infinity;
+
 /**
  * NOTE: Recursive, mutates people.
  *
  * @param {Person[]} people
+ * @param {number} numOfPeople
  * @returns {void}
  */
-function calcMatches(people) {
+function calcMatches(people, numOfPeople) {
    if (people.length > 0) {
       var highest = null;
 
@@ -26,17 +29,17 @@ function calcMatches(people) {
          }
       });
 
-      //console.log(highest.contender.urgency);
-      //
-      //if (highest.contender.urgency === 1) {
-      //   console.log(highest.person.name, ' - ', highest.contender.person.name);
-      //}
+      console.log(highest.contender.urgency);
 
-      highest.person.pick(highest.contender.person);
-      highest.contender.person.pick(highest.person);
+      if (highest.contender.urgency < _lowestUrgency) {
+         _lowestUrgency = highest.contender.urgency;
+      }
+
+      highest.person.pick(highest.contender.person, numOfPeople);
+      highest.contender.person.pick(highest.person, numOfPeople);
 
       // RECURSE
-      return calcMatches(_.without(people, highest.person, highest.contender.person));
+      return calcMatches(_.without(people, highest.person, highest.contender.person), numOfPeople);
    }
 }
 
@@ -60,6 +63,16 @@ function getMatches(people) {
    return matches;
 }
 
+function getLowestUrgency() {
+   return _lowestUrgency;
+}
+
+function resetLowestUrgency() {
+   _lowestUrgency = Infinity;
+}
+
 
 module.exports.calcMatches = calcMatches;
 module.exports.getMatches = getMatches;
+module.exports.getLowestUrgency = getLowestUrgency;
+module.exports.resetLowestUrgency = resetLowestUrgency;

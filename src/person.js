@@ -29,7 +29,7 @@ Person.prototype.urgency = function(otherPerson) {
       return 0;
    }
 
-   var i = _.findIndex(this.previousMatches, function(m) {
+   var i = _.findLastIndex(this.previousMatches, function(m) {
       return m.hasName(otherPerson.name);
    });
 
@@ -61,19 +61,17 @@ Person.prototype.mostUrgent = function(people) {
 
 /**
  * @param {Person} person
+ * @param {number} numOfPeople
  * @returns {void}
  */
-Person.prototype.pick = function(person) {
+Person.prototype.pick = function(person, numOfPeople) {
    var match = new Match(this.name, person.name);
 
-   var prev = _.find(this.previousMatches, function(m) {
-      return m.equivalent(match);
-   });
-
-   if (prev)
-      this.previousMatches = _.without(this.previousMatches, prev);
-
    this.previousMatches.push(match);
+
+   if (this.previousMatches.length > numOfPeople) {
+      this.previousMatches.shift();
+   }
 };
 
 /**

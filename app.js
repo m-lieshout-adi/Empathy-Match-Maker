@@ -36,12 +36,14 @@ app.get('/loadMatches', function (req, res) {
 
 app.get('/nextDay', function(req, res) {
    data.nextDay();
+   data.save();
 
    res.send(JSON.stringify(data.getMatches()));
 });
 
 app.get('/prevDay', function(req, res) {
    data.prevDay();
+   data.save();
 
    res.send(JSON.stringify(data.getMatches()));
 });

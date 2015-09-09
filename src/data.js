@@ -33,10 +33,6 @@ function loadNames(callback) {
       }
       _names = JSON.parse(data.toString());
 
-      _.each(_names, function(n) {
-         console.log(n);
-      });
-
       callback(_names);
    });
 }
@@ -50,15 +46,11 @@ function syncNamesAndHistory(callback) {
 }
 
 function deleteHistoryOfRemovedNames() {
-   console.log('before: ', _people.length);
-
    _people = _.filter(_people, function(p) {
       return _.some(_names, function(n) {
          return p.name === n;
       });
    });
-
-   console.log('after: ', _people.length);
 }
 
 function addNewNamesToHistory() {
@@ -81,23 +73,35 @@ function save() {
       }
       console.log('saved to history.json');
    });
+
+   printPeople();
+}
+
+function makeMatches () {
+   _people = _.shuffle(_people);
+   matchMaker.resetLowestUrgency();
+   matchMaker.calcMatches(_people, _people.length);
 }
 
 function nextDay() {
-   _people = _.shuffle(_people);
-   matchMaker.calcMatches(_people);
-   save();
+   makeMatches();
+   console.log('lowestUrgency: ', matchMaker.getLowestUrgency());
+
+   if (matchMaker.getLowestUrgency() < 2) {
+      console.log('remaking matches for day');
+      prevDay();
+
+      makeMatches();
+   }
 }
 
 function prevDay() {
    _.each(_people, function(p) {
       p.removeLastMatch();
    });
-   save();
 }
 
 function getMatches() {
-
    return matchMaker.getMatches(_people);
 }
 
