@@ -1,130 +1,18 @@
 [
-   {
-      "name": "Sam Paulin",
-      "previousMatches": [
-         "Matt",
-         "Morgan"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Rick",
-      "previousMatches": [
-         "Rua",
-         "Matt"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "James",
-      "previousMatches": [
-         "Phil",
-         "Rua"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "John",
-      "previousMatches": [
-         "Toby",
-         "Phil"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Peter Suggate",
-      "previousMatches": [
-         "Mark Sharma",
-         "Toby"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Peter Bromley",
-      "previousMatches": [
-         "Aidan",
-         "Mark Sharma"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Sam Payton",
-      "previousMatches": [
-         "Aaron",
-         "Aidan"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Sarah",
-      "previousMatches": [
-         "Morgan",
-         "Aaron"
-      ],
-      "empathiser": false
-   },
-   {
-      "name": "Phil",
-      "previousMatches": [
-         "James",
-         "John"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Toby",
-      "previousMatches": [
-         "John",
-         "Peter Suggate"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Mark Sharma",
-      "previousMatches": [
-         "Peter Suggate",
-         "Peter Bromley"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Aidan",
-      "previousMatches": [
-         "Peter Bromley",
-         "Sam Payton"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Aaron",
-      "previousMatches": [
-         "Sam Payton",
-         "Sarah"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Morgan",
-      "previousMatches": [
-         "Sarah",
-         "Sam Paulin"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Matt",
-      "previousMatches": [
-         "Sam Paulin",
-         "Rick"
-      ],
-      "empathiser": true
-   },
-   {
-      "name": "Rua",
-      "previousMatches": [
-         "Rick",
-         "James"
-      ],
-      "empathiser": true
-   }
+  {"name": "a",
+   "matches": []},
+  {"name": "b",
+   "matches": []},
+  {"name": "c",
+   "matches": []},
+  {"name": "d",
+   "matches": []},
+  {"name": "e",
+   "matches": []},
+  {"name": "f",
+   "matches": []},
+  {"name": "g",
+    "matches": []},
+  {"name": "h",
+   "matches": []}
 ]

@@ -8,10 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fs = require('fs');
-var beautify = require('js-beautify').js_beautify;
 
 var matchMaker = require('./src/match-maker');
-
 
 var app = express();
 
@@ -31,23 +29,11 @@ app.use('/', routes);
 app.use('/users', users);
 
 
-app.get('/data.people', function (req, res) {
-   console.log('hi!!!!');
-   fs.readFile(__dirname + '/public/people.txt', function (err, data) {
-      if (err) {
-         throw err;
-      }
-      res.send(data.toString());
-   });
-});
-
-
 app.get('/loadPeople', function (req, res) {
-   fs.readFile(__dirname + '/public/people2.json', function (err, data) {
+   fs.readFile(__dirname + '/public/people.json', function (err, data) {
       if (err) {
          throw err;
       }
-      //console.log(data.toString());
       var people = matchMaker.pickMatches(data.toString());
 
       console.log(people);
@@ -57,18 +43,8 @@ app.get('/loadPeople', function (req, res) {
 });
 
 
-// TODO: temp main code
-fs.readFile(__dirname + '/public/people2.json', function (err, data) {
-   if (err) {
-      throw err;
-   }
-   //console.log(data.toString());
-   matchMaker.pickMatches(data.toString());
 
-   //res.send(data.toString());
-});
-
-
+//TODO
 app.post('/savePeople', function (req, res) {
    var peopleStr = req.body.people;
    var text = JSON.parse(peopleStr);

@@ -5,6 +5,18 @@
 var Person = require('./person');
 var _ = require('underscore')._;
 
+
+/*
+
+ TODO: handle odd numbers of people:
+
+ Add nobody person when there's an odd number of people. check for and remove if
+ numbers become even.
+
+
+
+ */
+
 /**
  * @param {string} dataStr
  */
