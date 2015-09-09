@@ -5,47 +5,44 @@
 
 
 function loadPeopleFromServer(callback) {
-  $.get('/loadPeople', function(data) {
+   $.get('/loadMatches', function (data) {
 
-    if(callback) {
-      callback(data);
-    }
-  });
+      if (callback) {
+         callback(data);
+      }
+   });
 }
 
 function initButtons() {
-  $('#save').click(save);
+   //$('#save').click(save);
 
-  //$('#calc').click(function() {
-  //  var people = getInputData(editor);
-  //
-  //  console.log($('#inputVal').val());
-  //
-  //  chooseDay(people, $('#inputVal').val());
-  //
-  //  fillTable(people);
-  //});
+   $('#calc').click(function () {
+      nextDay();
+   });
 }
 
-function save() {
-  //var people = getKuraNames();
-  //var p2 = JSON.stringify(people);
+function nextDay() {
+   $.get('/nextDay', function(data) {
+      var matches = JSON.parse(data);
 
-  //$.post('/savePeople', {people: p2});
+      console.log(matches);
+
+      fillTable(matches);
+   });
 }
 
 function main() {
-  initButtons();
+   initButtons();
 
-  loadPeopleFromServer(function(data) {
-    var matches = JSON.parse(data);
+   loadPeopleFromServer(function (data) {
+      var matches = JSON.parse(data);
 
-    console.log(matches);
+      console.log(matches);
 
-    fillTable(matches);
+      fillTable(matches);
 
 
-  });
+   });
 
 }
 main();

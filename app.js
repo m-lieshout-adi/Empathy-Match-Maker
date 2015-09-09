@@ -5,17 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var fs = require('fs');
-
-var matchMaker = require('./src/match-maker');
+var data = require('./src/data');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -25,37 +18,42 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 
 
-app.get('/loadPeople', function (req, res) {
-   fs.readFile(__dirname + '/public/people.json', function (err, data) {
-      if (err) {
-         throw err;
-      }
-      var people = matchMaker.pickMatches(data.toString());
+app.get('/', function(req, res) {
+   res.redirect('/main.html');
+});
 
-      console.log(people);
+app.get('/admin', function (req, res) {
+   res.redirect('/admin.html');
+});
 
-      res.send(people);
+app.get('/loadMatches', function (req, res) {
+   data.load(function() {
+      // currently no matches
+      //data.nextDay();
+
+      res.send(JSON.stringify(data.getMatches()));
    });
 });
 
+app.get('/nextDay', function(req, res) {
+   data.nextDay();
 
-
-//TODO
-app.post('/savePeople', function (req, res) {
-   var peopleStr = req.body.people;
-   var text = JSON.parse(peopleStr);
-
-   fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function (err) {
-      if (err) {
-         throw err;
-      }
-      console.log('saved to people.json');
-   });
+   res.send(JSON.stringify(data.getMatches()));
 });
+
+//app.post('/savePeople', function (req, res) {
+//   var peopleStr = req.body.people;
+//   var text = JSON.parse(peopleStr);
+//
+//   fs.writeFile(__dirname + '/public/people.json', JSON.stringify(text, null, 3), function (err) {
+//      if (err) {
+//         throw err;
+//      }
+//      console.log('saved to people.json');
+//   });
+//});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

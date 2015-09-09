@@ -6,32 +6,21 @@ var Person = require('./person');
 var _ = require('underscore')._;
 
 
-/*
-
- TODO: handle odd numbers of people:
-
- Add nobody person when there's an odd number of people. check for and remove if
- numbers become even.
-
-
-
- */
-
-/**
- * @param {string} dataStr
- */
-function pickMatches(dataStr) {
-   var people = mkPeopleFromJson(dataStr);
-
-
-   for (var i = 0; i < 19; i++) {
-      calcMatches(people);
-   }
-
-   //_.each(people, function(p) {p.print();});
-
-   return JSON.stringify(getMatches(people));
-}
+///**
+// * @param {string} dataStr
+//*/
+//function pickMatches(dataStr) {
+//   var people = mkPeopleFromJson(dataStr);
+//
+//
+//   for (var i = 0; i < 19; i++) {
+//      calcMatches(people);
+//   }
+//
+//   //_.each(people, function(p) {p.print();});
+//
+//   return JSON.stringify(getMatches(people));
+//}
 
 /**
  * NOTE: Recursive, mutates people.
@@ -81,11 +70,13 @@ function getMatches(people) {
 }
 
 
-function mkPeopleFromJson(data) {
-   return _.map(JSON.parse(data), function(e) {
-      return new Person(e.name, e.matches);
-   });
-}
+//function mkPeopleFromJson(data) {
+//   return _.map(JSON.parse(data), function(e) {
+//      return new Person(e.name, e.matches);
+//   });
+//}
 
 
-module.exports.pickMatches = pickMatches;
+//module.exports.pickMatches = pickMatches;
+module.exports.calcMatches = calcMatches;
+module.exports.getMatches = getMatches;
