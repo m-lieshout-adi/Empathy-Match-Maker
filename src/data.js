@@ -2,7 +2,7 @@
  * Created by tsuggate on 9/09/15.
  */
 
-var fs = require('fs');
+var fs = require('fs.extra');
 var Person = require('./person');
 var Match = require('./match');
 var _ = require('underscore')._;
@@ -11,8 +11,26 @@ var matchMaker = require('./match-maker');
 var _people = null;
 var _names = null;
 
+var historyFile = '/../_state/history.json';
+var namesFile = '/../_state/names.json';
+
+function copyTemplateDataIfNeeded() {
+   fs.readFile(__dirname + historyFile, function(err, data) {
+      if (err) {
+         console.log('no historyFile; copying template');
+         fs.copy(__dirname + '/../public/default_state/history.json', __dirname + historyFile);
+      }
+   });
+   fs.readFile(__dirname + namesFile, function(err, data) {
+      if (err) {
+         console.log('no namesFile; copying template');
+         fs.copy(__dirname + '/../public/default_state/names.json', __dirname + namesFile);
+      }
+   });
+}
+
 function load(callback) {
-   fs.readFile(__dirname + '/../public/history.json', function(err, data) {
+   fs.readFile(__dirname + historyFile, function(err, data) {
       if (err) {
          throw err;
       }
@@ -27,7 +45,7 @@ function load(callback) {
 }
 
 function getLastModifiedDate(callback) {
-   fs.stat(__dirname + '/../public/history.json', function(err, data) {
+   fs.stat(__dirname + historyFile, function(err, data) {
       if (err) {
          throw err;
       }
@@ -36,7 +54,7 @@ function getLastModifiedDate(callback) {
 }
 
 function loadNames(callback) {
-   fs.readFile(__dirname + '/../public/names.json', function(err, data) {
+   fs.readFile(__dirname + namesFile, function(err, data) {
       if (err) {
          throw err;
       }
@@ -76,7 +94,7 @@ function save() {
    if (!_people)
       return;
 
-   fs.writeFile(__dirname + '/../public/history.json', JSON.stringify(_people, null, 3), function (err) {
+   fs.writeFile(__dirname + historyFile, JSON.stringify(_people, null, 3), function (err) {
       if (err) {
          throw err;
       }
@@ -136,6 +154,7 @@ function noMatches() {
    return _people && _people[0].previousMatches.length === 0;
 }
 
+module.exports.copyTemplateDataIfNeeded = copyTemplateDataIfNeeded;
 module.exports.load = load;
 module.exports.save = save;
 module.exports.nextDay = nextDay;
