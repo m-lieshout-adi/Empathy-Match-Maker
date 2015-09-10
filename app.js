@@ -19,6 +19,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+data.copyTemplateDataIfNeeded();
+
 
 app.get('/', function(req, res) {
    res.redirect('/main.html');

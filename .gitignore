@@ -1,3 +1,7 @@
 .idea/
 node_modules/
 public/javascripts/ace/
+
+_state/history.json
+
+_state/names.json
