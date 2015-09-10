@@ -1,42 +1,92 @@
 [
    {
       "name": "Norman",
-      "previousMatches": []
-   },
-   {
-      "name": "Alison",
-      "previousMatches": []
-   },
-   {
-      "name": "Fred",
-      "previousMatches": []
-   },
-   {
-      "name": "Tammy",
-      "previousMatches": []
-   },
-   {
-      "name": "Francis",
-      "previousMatches": []
+      "previousMatches": [
+         {
+            "empathiser": "Norman",
+            "client": "Jack"
+         }
+      ]
    },
    {
       "name": "Jack",
-      "previousMatches": []
+      "previousMatches": [
+         {
+            "empathiser": "Jack",
+            "client": "Norman"
+         }
+      ]
    },
    {
-      "name": "Bob",
-      "previousMatches": []
+      "name": "Francis",
+      "previousMatches": [
+         {
+            "empathiser": "Francis",
+            "client": "Fred"
+         }
+      ]
    },
    {
-      "name": "Donald",
-      "previousMatches": []
+      "name": "Fred",
+      "previousMatches": [
+         {
+            "empathiser": "Fred",
+            "client": "Francis"
+         }
+      ]
    },
    {
-      "name": "Kendra",
-      "previousMatches": []
+      "name": "Tammy",
+      "previousMatches": [
+         {
+            "empathiser": "Tammy",
+            "client": "Alison"
+         }
+      ]
+   },
+   {
+      "name": "Alison",
+      "previousMatches": [
+         {
+            "empathiser": "Alison",
+            "client": "Tammy"
+         }
+      ]
    },
    {
       "name": "Jill",
-      "previousMatches": []
+      "previousMatches": [
+         {
+            "empathiser": "Jill",
+            "client": "Donald"
+         }
+      ]
+   },
+   {
+      "name": "Donald",
+      "previousMatches": [
+         {
+            "empathiser": "Donald",
+            "client": "Jill"
+         }
+      ]
+   },
+   {
+      "name": "Kendra",
+      "previousMatches": [
+         {
+            "empathiser": "Kendra",
+            "client": "Bob"
+         }
+      ]
+   },
+   {
+      "name": "Bob",
+      "previousMatches": [
+         {
+            "empathiser": "Bob",
+            "client": "Kendra"
+         }
+      ]
    }
 ]
